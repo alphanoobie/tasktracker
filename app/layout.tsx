@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Pacifico } from "next/font/google";
+import { Pacifico, Satisfy } from "next/font/google";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -7,13 +7,19 @@ const pacifico = Pacifico({
   variable: "--font-pacifico",
 });
 
+const satisfy = Satisfy({
+  subsets:['latin'],
+  weight:['400'],
+  variable: "--font-satisfy"
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${pacifico.variable}`}>
+    <html lang="en" className={`${pacifico.variable} ${satisfy.variable} `}>
       <body className="bg-[#13262F] flex flex-col items-center">
         <div className="w-[1000px] h-[80px] flex items-center justify-center">
           <h1 className="text-5xl text-[#914D76] font-pacifico">Task Tracker</h1>

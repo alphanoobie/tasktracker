@@ -8,7 +8,8 @@ const config: Config = {
   ],
   theme: {
     fontFamily:{
-      'pacifico': ['var(--font-pacifico)']
+      'pacifico': ['var(--font-pacifico)'],
+      'satisfy':['var(--font-satisfy)']
     }
   },
   plugins: [],
