@@ -1,21 +1,29 @@
 "use client";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     console.log(username, password, cpassword);
     // Post data to server
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      body: JSON.stringify({ username: username, password: password }),
+    });
+    const data = await response.json()
+    console.log(data);
+    
+    
   };
-
 
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-150px)]">
-      <form className="flex flex-col">
+      <form className="flex flex-col" method="POST" onSubmit={handleSubmit}>
         <label htmlFor="username" className="text-lg">
           Username
         </label>
@@ -53,7 +61,6 @@ export default function SignUp() {
         <button
           type="submit"
           className="bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100"
-          onClick={handleSubmit}
         >
           Sign Up
         </button>
