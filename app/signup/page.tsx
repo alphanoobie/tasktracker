@@ -1,5 +1,5 @@
 "use client";
-import { FormEventHandler, useState } from "react";
+import { useState } from "react";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -15,10 +15,8 @@ export default function SignUp() {
       method: "POST",
       body: JSON.stringify({ username: username, password: password }),
     });
-    const data = await response.json()
+    const data = await response.json();
     console.log(data);
-    
-    
   };
 
   return (
