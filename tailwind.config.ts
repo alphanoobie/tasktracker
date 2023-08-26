@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     fontFamily:{
       'pacifico': ['var(--font-pacifico)'],
-      'satisfy':['var(--font-satisfy)']
+      'sans':['var(--font-satisfy)']
     }
   },
   plugins: [],

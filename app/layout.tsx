@@ -24,7 +24,7 @@ export default function RootLayout({
         <div className="w-[1000px] h-[80px] flex items-center justify-center">
           <h1 className="text-5xl text-[#914D76] font-pacifico">Task Tracker</h1>
         </div>
-        <div className="w-[1000px] bg-[#914D76] min-h-[calc(100vh-80px)] rounded-t-3xl p-8">
+        <div className="w-[1000px] bg-[#914D76] min-h-[calc(100vh-80px)] rounded-t-3xl">
           {children}
         </div>
       </body>
