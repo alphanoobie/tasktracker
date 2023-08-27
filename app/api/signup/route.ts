@@ -1,6 +1,5 @@
 import connectMongo from "@/app/_lib/connectMongo";
 import User from "@/app/_models/user";
-import { Error } from "mongoose";
 import { NextResponse } from "next/server";
 const bcrypt = require("bcrypt");
 

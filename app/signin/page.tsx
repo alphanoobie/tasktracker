@@ -1,36 +1,31 @@
 "use client";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import { error } from "console";
 
-export default function SignUp() {
+export default function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState([] as string[]);
+  const [errors, setErrors] = useState("");
 
-  const validate = () => {
-    setErrors([]);
-    if (username.includes(" ")) {
-      setErrors((current) => [...current, "Username contains whitespace"]);
-    }
-
-    // Add more checks
-    return errors;
-  };
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
-    const newErrors = validate();
-    if (newErrors.length === 0) {
-      e.preventDefault();
-      // Post data to server
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        body: JSON.stringify({ username: username, password: password }),
-      });
-      const data = await response.json();
-    }
+    e.preventDefault();
+    const response = await fetch("/api/signin", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await response.json();
     setLoading(false);
+    if (data.ok) {
+      router.push("/");
+    } else {
+      setErrors(data.message);
+    }
   };
 
   return (
@@ -67,7 +62,7 @@ export default function SignUp() {
             loading ? "animate-spin" : ""
           }`}
         >
-          Sign Up
+          Sign In
         </button>
         <div className="text-center">
           New here?{" "}
