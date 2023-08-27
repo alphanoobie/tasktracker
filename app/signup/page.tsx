@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function SignUp() {
@@ -75,12 +76,22 @@ export default function SignUp() {
 
         <button
           type="submit"
-          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 mt-4${
+          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 my-4${
             loading ? "animate-spin" : ""
           }`}
         >
           Sign Up
         </button>
+
+        <div className="text-center">
+          Already have an account?{" "}
+          <Link
+            href={"/signin"}
+            className="text-blue-900 bg-[#e7d7c1] rounded-full p-1 opacity-80 hover:opacity-100"
+          >
+            Sign In
+          </Link>
+        </div>
       </form>
     </div>
   );
