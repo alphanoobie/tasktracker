@@ -14,7 +14,7 @@ export async function POST(request: Request) {
         user.password
       );
       if (isPasswordValid === true) {
-        return NextResponse.json({ ok: true });
+        return NextResponse.json({ ok: true, user: user });
       } else {
         return NextResponse.json({ message: "Incorrect password" });
       }

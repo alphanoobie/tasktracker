@@ -1,14 +1,16 @@
 "use client";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
-import { error } from "console";
+import { useUserContext } from "../_context/user";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState("");
+
+  const { authUser, setAuthUser }:any = useUserContext();
 
   const router = useRouter();
 
@@ -22,6 +24,8 @@ export default function SignIn() {
     const data = await response.json();
     setLoading(false);
     if (data.ok) {
+      console.log(data.user);
+      setAuthUser(data.user);
       router.push("/");
     } else {
       setErrors(data.message);
