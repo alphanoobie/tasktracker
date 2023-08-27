@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     await connectMongo();
     await User.create(newUser);
     return NextResponse.json({ ok: true });
-  } catch (error:any) {
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 403 });
   }
 }

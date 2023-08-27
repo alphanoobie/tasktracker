@@ -13,7 +13,9 @@ export default function SignUp() {
     if (username.includes(" ")) {
       setErrors((current) => [...current, "Username contains whitespace"]);
     }
-    return errors
+
+    // Add more checks
+    return errors;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,8 +35,7 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-150px)]">
-      {loading ? <div>loading</div> : <div>NOT LOADING</div>}
-      {errors}
+      <div className="text-red-800">{errors}</div>
       <form className="flex flex-col" method="POST" onSubmit={handleSubmit}>
         <label htmlFor="username" className="text-lg">
           Username
