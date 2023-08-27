@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [cpassword, setCpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([] as string[]);
 
@@ -56,26 +55,14 @@ export default function SignUp() {
           type="password"
           name="password"
           className="mb-2"
+          required={true}
           value={password}
-          required={true}
           onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <label htmlFor="cpassword" className="text-lg">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          name="cpassword"
-          className="mb-4"
-          value={cpassword}
-          required={true}
-          onChange={(e) => setCpassword(e.target.value)}
         />
 
         <button
           type="submit"
-          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 ${
+          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 mt-4${
             loading ? "animate-spin" : ""
           }`}
         >
