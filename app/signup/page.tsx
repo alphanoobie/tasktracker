@@ -67,7 +67,7 @@ export default function SignUp() {
         <input
           type="password"
           name="cpassword"
-          className="mb-4"
+          className="mb-2"
           value={cpassword}
           required={true}
           onChange={(e) => setCpassword(e.target.value)}
@@ -75,7 +75,7 @@ export default function SignUp() {
 
         <button
           type="submit"
-          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 ${
+          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 mt-4${
             loading ? "animate-spin" : ""
           }`}
         >
