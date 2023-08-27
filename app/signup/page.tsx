@@ -5,22 +5,25 @@ export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
-    console.log(username, password, cpassword);
+
     // Post data to server
     const response = await fetch("/api/signup", {
       method: "POST",
       body: JSON.stringify({ username: username, password: password }),
     });
     const data = await response.json();
-    console.log(data);
+    setLoading(false);
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-150px)]">
+      {loading ? <div>loading</div> : <div>NOT LOADING</div>}
       <form className="flex flex-col" method="POST" onSubmit={handleSubmit}>
         <label htmlFor="username" className="text-lg">
           Username
@@ -58,7 +61,9 @@ export default function SignUp() {
 
         <button
           type="submit"
-          className="bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100"
+          className={`bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 ${
+            loading ? "animate-spin" : ""
+          }`}
         >
           Sign Up
         </button>
