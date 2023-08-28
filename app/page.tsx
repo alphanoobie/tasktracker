@@ -1,11 +1,13 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "./_context/user";
 import { useRouter } from "next/navigation";
 import { NewTaskModal } from "./_components/newTaskModal";
 
 export default function Home() {
   const { authUser }: any = useUserContext();
+
+  const [showModal, setShowModal] = useState<Boolean>(false);
 
   const router = useRouter();
   useEffect(() => {
@@ -15,6 +17,7 @@ export default function Home() {
   }, []);
 
   const handleNewTaskModal = async () => {
+    setShowModal(!showModal);
     const data = await fetch("/api/createtask", {
       method: "POST",
       body: JSON.stringify({
@@ -35,9 +38,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex justify-center m-4">
-        <NewTaskModal />
-      </div>
+      {showModal && (
+        <div className="flex justify-center">
+          <NewTaskModal showModal={showModal} setShowModal={setShowModal} />
+        </div>
+      )}
 
       <div>{JSON.stringify(authUser)}</div>
     </div>
