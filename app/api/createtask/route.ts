@@ -6,8 +6,7 @@ export async function POST(request: Request) {
   const data = await request.json();
   try {
     await connectMongo();
-    const response = await Task.create(data);
-    console.log(response);
+    await Task.create(data);
     return NextResponse.json({ ok: "true" });
   } catch (error: any) {
     return NextResponse.json({ message: error.message });

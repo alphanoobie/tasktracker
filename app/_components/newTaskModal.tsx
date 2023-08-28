@@ -8,7 +8,7 @@ export const NewTaskModal = (props: any) => {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("high");
 
-  const { authUser, setAuthUser }: any = useUserContext();
+  const { authUser }: any = useUserContext();
 
   const handleCreatetask = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,10 +19,10 @@ export const NewTaskModal = (props: any) => {
         title,
         description,
         priority,
-        date: Date.now(),
+        dateCreated: Date.now(),
       }),
     });
-    console.log(data.json());
+    props.setShowModal(false)    
   };
 
   return (
