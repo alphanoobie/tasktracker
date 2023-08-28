@@ -43,9 +43,9 @@ export const NewTaskModal = (props: any) => {
         method="POST"
         onSubmit={handleCreatetask}
       >
-        <label>Title</label>
+        <label className="text-lg">Title</label>
         <input
-          type="text"
+          type="text text-lg"
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -54,18 +54,19 @@ export const NewTaskModal = (props: any) => {
           className="mb-2"
         />
 
-        <label>Description</label>
+        <label className="text-lg">Description</label>
         <textarea
-          className="resize-none mb-8"
+          className="resize-none mb-8 text-lg"
           onChange={(e) => {
             setDescription(e.target.value);
           }}
           value={description}
+    
         />
 
         <div className="flex justify-around mb-4">
           <div
-            className={`rounded-full px-2 py-1 border-2 border-red-800 cursor-pointer w-20 text-center ${
+            className={`rounded-full px-2 py-1 border-2 border-red-800 cursor-pointer w-20 text-center text-lg ${
               priority === "high" ? "bg-red-600" : "bg-transparent"
             }`}
             onClick={() => {
@@ -75,7 +76,7 @@ export const NewTaskModal = (props: any) => {
             High
           </div>
           <div
-            className={`rounded-full px-2 py-1 border-2 border-yellow-800 cursor-pointer w-20 text-center ${
+            className={`rounded-full px-2 py-1 border-2 border-yellow-800 cursor-pointer w-20 text-center text-lg ${
               priority === "moderate" ? "bg-yellow-600" : "bg-transparent"
             }`}
             onClick={() => {
@@ -85,7 +86,7 @@ export const NewTaskModal = (props: any) => {
             Moderate
           </div>
           <div
-            className={`rounded-full px-2 py-1 border-2 border-green-800 cursor-pointer w-20 text-center ${
+            className={`rounded-full px-2 py-1 border-2 border-green-800 cursor-pointer w-20 text-center text-lg ${
               priority === "low" ? "bg-green-600" : "bg-transparent"
             }`}
             onClick={() => {
