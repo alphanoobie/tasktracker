@@ -18,12 +18,6 @@ export default function Home() {
 
   const handleNewTaskModal = async () => {
     setShowModal(!showModal);
-    const data = await fetch("/api/createtask", {
-      method: "POST",
-      body: JSON.stringify({
-        user: authUser._id,
-      }),
-    });
   };
   return (
     <div>

@@ -1,17 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { useUserContext } from "../_context/user";
 
 export const NewTaskModal = (props: any) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("high");
 
+  const { authUser, setAuthUser }: any = useUserContext();
+
+  const handleCreatetask = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const data = await fetch("/api/createtask", {
+      method: "POST",
+      body: JSON.stringify({
+        user: authUser._id,
+        title,
+        description,
+        priority,
+        date: Date.now(),
+      }),
+    });
+    console.log(data.json());
+  };
+
   return (
-    <div className="fixed z-1 w-[700px] h-[500px] bg-[#6F8695] rounded-3xl p-8 m-2">
+    <div className="fixed z-1 w-[700px] h-[500px] bg-[#6F8695] rounded-3xl p-8 m-2 flex flex-col justify-center">
       <div>
         <button
-          className="bg-red-700 w-12 h-12 rounded-full border-2 border-red-900 text-3xl flex items-center justify-center opacity-90 hover:opacity-100 absolute right-4"
+          className="bg-red-700 w-12 h-12 rounded-full border-2 border-red-900 text-3xl flex items-center justify-center opacity-90 hover:opacity-100 absolute right-4 top-4"
           onClick={() => {
             props.setShowModal(false);
           }}
@@ -20,7 +38,11 @@ export const NewTaskModal = (props: any) => {
         </button>
       </div>
 
-      <form className="flex flex-col w-3/4">
+      <form
+        className="flex flex-col w-3/4 h-3/4 justify-around"
+        method="POST"
+        onSubmit={handleCreatetask}
+      >
         <label>Title</label>
         <input
           type="text"
@@ -34,17 +56,16 @@ export const NewTaskModal = (props: any) => {
 
         <label>Description</label>
         <textarea
-          className="resize-none mb-4"
+          className="resize-none mb-8"
           onChange={(e) => {
             setDescription(e.target.value);
           }}
-        >
-          {description}
-        </textarea>
+          value={description}
+        />
 
-        <div className="flex justify-around mb-2">
+        <div className="flex justify-around mb-4">
           <div
-            className={`rounded-full px-2 py-1 border-2 border-red-800 cursor-pointer ${
+            className={`rounded-full px-2 py-1 border-2 border-red-800 cursor-pointer w-20 text-center ${
               priority === "high" ? "bg-red-600" : "bg-transparent"
             }`}
             onClick={() => {
@@ -54,16 +75,17 @@ export const NewTaskModal = (props: any) => {
             High
           </div>
           <div
-            className={`rounded-full px-2 py-1 border-2 border-yellow-800 cursor-pointer ${
+            className={`rounded-full px-2 py-1 border-2 border-yellow-800 cursor-pointer w-20 text-center ${
               priority === "moderate" ? "bg-yellow-600" : "bg-transparent"
-            }`}onClick={() => {
+            }`}
+            onClick={() => {
               setPriority("moderate");
             }}
           >
             Moderate
           </div>
           <div
-            className={`rounded-full px-2 py-1 border-2 border-green-800 cursor-pointer ${
+            className={`rounded-full px-2 py-1 border-2 border-green-800 cursor-pointer w-20 text-center ${
               priority === "low" ? "bg-green-600" : "bg-transparent"
             }`}
             onClick={() => {
@@ -73,6 +95,16 @@ export const NewTaskModal = (props: any) => {
             Low
           </div>
         </div>
+
+        <button
+          type="submit"
+          className={
+            "bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 my-4"
+          }
+          onClick={handleCreatetask}
+        >
+          Create Task
+        </button>
       </form>
     </div>
   );
