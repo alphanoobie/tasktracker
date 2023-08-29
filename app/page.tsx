@@ -57,7 +57,7 @@ export default function Home() {
       )}
 
       <div className="flex flex-col items-center mt-6">
-        {tasks && tasks.map((task, index) => <Task task={task} key={index} />)}
+        {tasks && tasks.map((task, index) => <Task task={task} key={index} index={index} />)}
       </div>
     </div>
   );
