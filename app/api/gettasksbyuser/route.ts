@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   try {
     await connectMongo();
     const tasks = await Task.find({ user });
-    console.log(tasks);
+    // console.log(tasks);
     return NextResponse.json({ ok: true, data: tasks });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

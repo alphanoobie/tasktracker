@@ -11,21 +11,24 @@ export default function Home() {
   const [tasks, setTasks] = useState(null);
 
   const router = useRouter();
+
+  const getAllTasksByUser = async () => {
+    const response = await fetch(`/api/gettasksbyuser?user=${authUser._id}`);
+    const data = await response.json();
+    setTasks(data.data);
+  };
+
   useEffect(() => {
     if (authUser === null) {
       router.push("/signin");
     } else {
-      fetch(`/api/gettasksbyuser?user=${authUser._id}`).then((response) => {
-        response.json().then((data) => {
-          console.log(data.data);
-          setTasks(data.data);
-        });
-      });
+      getAllTasksByUser();
     }
-  }, );
+  }, []);
 
   const handleNewTaskModal = async () => {
     setShowModal(!showModal);
+    await getAllTasksByUser();
   };
   return (
     <div>
@@ -42,11 +45,11 @@ export default function Home() {
 
       {showModal && (
         <div className="flex justify-center">
-          <NewTaskModal showModal={showModal} setShowModal={setShowModal} />
+          <NewTaskModal showModal={showModal} setShowModal={setShowModal} getAllTasksByUser={getAllTasksByUser} />
         </div>
       )}
 
-      <div>{JSON.stringify(tasks)}</div>
+      <div></div>
     </div>
   );
 }

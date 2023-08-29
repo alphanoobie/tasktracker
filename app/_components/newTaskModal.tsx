@@ -22,7 +22,8 @@ export const NewTaskModal = (props: any) => {
         dateCreated: Date.now(),
       }),
     });
-    props.setShowModal(false)    
+    props.setShowModal(false);
+    props.getAllTasksByUser();
   };
 
   return (
@@ -61,7 +62,6 @@ export const NewTaskModal = (props: any) => {
             setDescription(e.target.value);
           }}
           value={description}
-    
         />
 
         <div className="flex justify-around mb-4">
