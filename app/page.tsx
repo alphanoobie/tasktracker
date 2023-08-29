@@ -14,9 +14,11 @@ export default function Home() {
   const router = useRouter();
 
   const getAllTasksByUser = async () => {
-    const response = await fetch(`/api/gettasksbyuser?user=${authUser._id}`);
-    const data = await response.json();
-    setTasks(data.data);
+    if (authUser) {
+      const response = await fetch(`/api/gettasksbyuser?user=${authUser._id}`);
+      const data = await response.json();
+      setTasks(data.data);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +56,9 @@ export default function Home() {
         </div>
       )}
 
-      <div className="flex flex-col items-center mt-6">{tasks && tasks.map((task) => <Task task={task}/>)}</div>
+      <div className="flex flex-col items-center mt-6">
+        {tasks && tasks.map((task) => <Task task={task} />)}
+      </div>
     </div>
   );
 }
