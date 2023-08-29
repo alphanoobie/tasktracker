@@ -6,21 +6,21 @@ export const Task = (props: any) => {
       <div className="flex flex-col justify-center mr-2">
         {task.priority === "high" ? (
           <div
-            className={`rounded-full px-2 py-1 border-2 border-red-800 bg-red-700 cursor-pointer w-20 text-center text-lg
+            className={`rounded-full px-2 py-1 border-2 border-red-800 bg-red-700 w-20 text-center text-lg
             `}
           >
             high
           </div>
         ) : task.priority === "moderate" ? (
           <div
-            className={`rounded-full px-2 py-1 border-2 border-yellow-800 bg-yellow-700 cursor-pointer w-20 text-center text-lg
+            className={`rounded-full px-2 py-1 border-2 border-yellow-800 bg-yellow-700 w-20 text-center text-lg
             `}
           >
             moderate
           </div>
         ) : (
           <div
-            className={`rounded-full px-2 py-1 border-2 border-green-800 bg-green-700 cursor-pointer w-20 text-center text-lg
+            className={`rounded-full px-2 py-1 border-2 border-green-800 bg-green-700 w-20 text-center text-lg
             `}
           >
             low
