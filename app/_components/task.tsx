@@ -3,9 +3,12 @@ export const Task = (props: any) => {
   const date = new Date(task.updatedAt).toLocaleString();
   return (
     <div
-      className={`w-[800px] h-[100px]  my-2 px-8 py-4 rounded-full flex items-center justify-between ${
+      className={`w-[800px] h-[100px]  my-2 px-8 py-4 rounded-full flex items-center justify-between cursor-pointer ${
         index % 2 === 0 ? "bg-[#704E2E]" : "bg-[#e7d7c1]"
       }`}
+      onClick={()=>{
+        props.setShowEditTaskModal(true)
+      }}
     >
       <div className="flex flex-col justify-center mr-2">
         {task.priority === "high" ? (

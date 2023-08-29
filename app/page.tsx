@@ -4,11 +4,13 @@ import { useUserContext } from "./_context/user";
 import { useRouter } from "next/navigation";
 import { NewTaskModal } from "./_components/newTaskModal";
 import { Task } from "./_components/task";
+import { EditTaskModal } from "./_components/editTaskModal";
 
 export default function Home() {
   const { authUser }: any = useUserContext();
 
   const [showModal, setShowModal] = useState<Boolean>(false);
+  const [showEditTaskModal, setShowEditTaskModal] = useState(false);
   const [tasks, setTasks] = useState([]);
 
   const router = useRouter();
@@ -56,8 +58,21 @@ export default function Home() {
         </div>
       )}
 
+      {showEditTaskModal && (
+        <div className="flex justify-center">
+          <EditTaskModal
+            showEditTaskModal={setShowEditTaskModal}
+            setShowEditTaskModal={setShowEditTaskModal}
+            getAllTasksByUser={getAllTasksByUser}
+          />
+        </div>
+      )}
+
       <div className="flex flex-col items-center mt-6">
-        {tasks && tasks.map((task, index) => <Task task={task} key={index} index={index} />)}
+        {tasks &&
+          tasks.map((task, index) => (
+            <Task task={task} key={index} index={index} setShowEditTaskModal={setShowEditTaskModal}/>
+          ))}
       </div>
     </div>
   );
