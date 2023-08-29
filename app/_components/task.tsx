@@ -2,7 +2,7 @@ export const Task = (props: any) => {
   const { task }: any = props;
   const date = new Date(task.updatedAt).toLocaleString();
   return (
-    <div className="w-[800px] h-[100px] bg-[#704E2E] my-2 px-8 py-4 rounded-full flex">
+    <div className="w-[800px] h-[100px] bg-[#704E2E] my-2 px-8 py-4 rounded-full flex items-center justify-between">
       <div className="flex flex-col justify-center mr-2">
         {task.priority === "high" ? (
           <div
@@ -27,7 +27,7 @@ export const Task = (props: any) => {
           </div>
         )}
       </div>
-      <div>
+      <div className="w-[400px]">
         <div className="text-xl font-pacifico">{task.title}</div>
         <div className="text-lg line-clamp-1">{task.description}</div>
         <div>{date}</div>
