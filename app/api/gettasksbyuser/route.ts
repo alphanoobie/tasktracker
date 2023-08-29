@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   //   console.log(user);
   try {
     await connectMongo();
-    const tasks = await Task.find({ user });
+    const tasks = await Task.find({ user }).sort({ dateCreated: -1 });
     // console.log(tasks);
     return NextResponse.json({ ok: true, data: tasks });
   } catch (error: any) {
