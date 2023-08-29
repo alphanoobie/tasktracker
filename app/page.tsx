@@ -12,6 +12,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState<Boolean>(false);
   const [showEditTaskModal, setShowEditTaskModal] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [clickIndex, setClickIndex] = useState(0);
 
   const router = useRouter();
 
@@ -64,6 +65,7 @@ export default function Home() {
             showEditTaskModal={setShowEditTaskModal}
             setShowEditTaskModal={setShowEditTaskModal}
             getAllTasksByUser={getAllTasksByUser}
+            task = {tasks[clickIndex]}
           />
         </div>
       )}
@@ -71,7 +73,13 @@ export default function Home() {
       <div className="flex flex-col items-center mt-6">
         {tasks &&
           tasks.map((task, index) => (
-            <Task task={task} key={index} index={index} setShowEditTaskModal={setShowEditTaskModal}/>
+            <Task
+              task={task}
+              key={index}
+              index={index}
+              setShowEditTaskModal={setShowEditTaskModal}
+              setClickIndex={setClickIndex}
+            />
           ))}
       </div>
     </div>

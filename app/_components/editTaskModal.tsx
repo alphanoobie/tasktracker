@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useUserContext } from "../_context/user";
 
 export const EditTaskModal = (props: any) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("high");
+  const { task } = props;
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  const [priority, setPriority] = useState(task.priority);
 
   const { authUser }: any = useUserContext();
 

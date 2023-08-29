@@ -8,6 +8,7 @@ export const Task = (props: any) => {
       }`}
       onClick={()=>{
         props.setShowEditTaskModal(true)
+        props.setClickIndex(index)
       }}
     >
       <div className="flex flex-col justify-center mr-2">
