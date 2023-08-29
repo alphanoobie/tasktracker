@@ -19,7 +19,6 @@ export const NewTaskModal = (props: any) => {
         title,
         description,
         priority,
-        dateCreated: Date.now(),
       }),
     });
     props.setShowModal(false);
