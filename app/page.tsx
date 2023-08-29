@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "./_context/user";
 import { useRouter } from "next/navigation";
 import { NewTaskModal } from "./_components/newTaskModal";
+import { Task } from "./_components/task";
 
 export default function Home() {
   const { authUser }: any = useUserContext();
 
   const [showModal, setShowModal] = useState<Boolean>(false);
-  const [tasks, setTasks] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
   const router = useRouter();
 
@@ -45,11 +46,15 @@ export default function Home() {
 
       {showModal && (
         <div className="flex justify-center">
-          <NewTaskModal showModal={showModal} setShowModal={setShowModal} getAllTasksByUser={getAllTasksByUser} />
+          <NewTaskModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            getAllTasksByUser={getAllTasksByUser}
+          />
         </div>
       )}
 
-      <div></div>
+      <div className="flex flex-col items-center">{tasks && tasks.map((task) => <Task task={task}/>)}</div>
     </div>
   );
 }
