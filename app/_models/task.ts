@@ -19,6 +19,10 @@ const TaskSchema = new Schema({
     type: String,
     enum: ["low", "moderate", "high"],
   },
+  completed: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Task = models.Task || model("Task", TaskSchema);
