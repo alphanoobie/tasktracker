@@ -8,13 +8,21 @@ export default function Home() {
   const { authUser }: any = useUserContext();
 
   const [showModal, setShowModal] = useState<Boolean>(false);
+  const [tasks, setTasks] = useState(null);
 
   const router = useRouter();
   useEffect(() => {
     if (authUser === null) {
       router.push("/signin");
+    } else {
+      fetch(`/api/gettasksbyuser?user=${authUser._id}`).then((response) => {
+        response.json().then((data) => {
+          console.log(data.data);
+          setTasks(data.data);
+        });
+      });
     }
-  }, []);
+  }, );
 
   const handleNewTaskModal = async () => {
     setShowModal(!showModal);
@@ -38,7 +46,7 @@ export default function Home() {
         </div>
       )}
 
-      <div>{JSON.stringify(authUser)}</div>
+      <div>{JSON.stringify(tasks)}</div>
     </div>
   );
 }
