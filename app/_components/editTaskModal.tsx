@@ -11,18 +11,19 @@ export const EditTaskModal = (props: any) => {
 
   const { authUser }: any = useUserContext();
 
-  const handleCreatetask = async (e: React.FormEvent) => {
+  const handleEditTask = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = await fetch("/api/createtask", {
-      method: "POST",
+    const data = await fetch("/api/edittask", {
+      method: "PUT",
       body: JSON.stringify({
+        _id:task._id,
         user: authUser._id,
         title,
         description,
         priority,
       }),
     });
-    props.setShowModal(false);
+    props.setShowEditTaskModal(false);
     props.getAllTasksByUser();
   };
 
@@ -42,7 +43,7 @@ export const EditTaskModal = (props: any) => {
       <form
         className="flex flex-col w-3/4 h-3/4 justify-around"
         method="POST"
-        onSubmit={handleCreatetask}
+        onSubmit={handleEditTask}
       >
         <label className="text-lg">Title</label>
         <input
@@ -102,7 +103,7 @@ export const EditTaskModal = (props: any) => {
           className={
             "bg-[#e7d7c1] text-lg rounded-full p-1 opacity-80 hover:opacity-100 my-4"
           }
-          onClick={handleCreatetask}
+          onClick={handleEditTask}
         >
           Edit Task
         </button>
