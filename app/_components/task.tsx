@@ -9,11 +9,19 @@ export const Task = (props: any) => {
     });
     props.getAllTasksByUser();
   };
+
+  const markAsDone = async () => {
+    const response = await fetch("/api/edittask", {
+      method: "PUT",
+      body: JSON.stringify({ _id: task._id, completed: !task.completed }),
+    });
+    props.getAllTasksByUser();
+  };
   return (
     <div
       className={`w-[800px] h-[100px] my-2 px-8 py-4 rounded-full flex items-center justify-between ${
         index % 2 === 0 ? "bg-[#704E2E]" : "bg-[#e7d7c1]"
-      }`}
+      } ${task.completed && "line-through"}`}
     >
       <div className="flex flex-col justify-center mr-2">
         {task.priority === "high" ? (
@@ -64,7 +72,16 @@ export const Task = (props: any) => {
         >
           Edit
         </button>
-        <button className="rounded-full px-2 py-1 border-2 w-14">Done</button>
+        <button
+          className={`rounded-full px-2 py-1 border-2 mr-2 w-14 ${
+            index % 2 === 1
+              ? "bg-[#704E2E] border-[#704E2E]"
+              : "bg-[#e7d7c1] border-[#e7d7c1]"
+          }`}
+          onClick={markAsDone}
+        >
+          {task.completed ? "Undo" : "Done"}
+        </button>
       </div>
     </div>
   );
