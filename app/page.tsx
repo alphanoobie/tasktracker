@@ -79,6 +79,7 @@ export default function Home() {
               index={index}
               setShowEditTaskModal={setShowEditTaskModal}
               setClickIndex={setClickIndex}
+              getAllTasksByUser={getAllTasksByUser}
             />
           ))}
       </div>
