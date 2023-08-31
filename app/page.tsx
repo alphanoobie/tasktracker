@@ -49,7 +49,7 @@ export default function Home() {
   };
   return (
     <div>
-      <div className="w-[1000px] h-[100px] bg-[#6F8695] rounded-t-3xl flex items-center px-8 flex justify-center">
+      <div className="w-[1000px] h-[100px] bg-[#6F8695] rounded-t-3xl items-center px-8 flex justify-center">
         <div>
           <button
             className="bg-green-700 w-12 h-12 mx-2 rounded-full border-2 border-green-900 text-3xl flex items-center justify-center opacity-90 hover:opacity-100"
