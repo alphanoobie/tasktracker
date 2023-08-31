@@ -13,6 +13,7 @@ export default function Home() {
   const [showEditTaskModal, setShowEditTaskModal] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [clickIndex, setClickIndex] = useState(0);
+  const [search, setSearch] = useState("");
 
   const router = useRouter();
 
@@ -22,6 +23,13 @@ export default function Home() {
       const data = await response.json();
       setTasks(data.data);
     }
+  };
+
+  const handleSearch = () => {
+    const searchResult = tasks.filter((task: any) => {
+      return task.title.includes(search) || task.description.includes(search);
+    });
+    setTasks(searchResult);
   };
 
   useEffect(() => {
@@ -47,6 +55,19 @@ export default function Home() {
             +
           </button>
         </div>
+        <div>
+          <input
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+          <button
+            className="rounded-full px-2 py-1 border-2 mr-2 w-14 bg-[#e7d7c1] border-[#e7d7c1]"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
       </div>
 
       {showModal && (
@@ -65,7 +86,7 @@ export default function Home() {
             showEditTaskModal={setShowEditTaskModal}
             setShowEditTaskModal={setShowEditTaskModal}
             getAllTasksByUser={getAllTasksByUser}
-            task = {tasks[clickIndex]}
+            task={tasks[clickIndex]}
           />
         </div>
       )}
