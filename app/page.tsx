@@ -26,6 +26,9 @@ export default function Home() {
   };
 
   const handleSearch = () => {
+    if (search === "") {
+      getAllTasksByUser();
+    }
     const searchResult = tasks.filter((task: any) => {
       return task.title.includes(search) || task.description.includes(search);
     });
@@ -46,10 +49,10 @@ export default function Home() {
   };
   return (
     <div>
-      <div className="w-[1000px] h-[100px] bg-[#6F8695] rounded-t-3xl flex items-center px-8">
+      <div className="w-[1000px] h-[100px] bg-[#6F8695] rounded-t-3xl flex items-center px-8 flex justify-center">
         <div>
           <button
-            className="bg-green-700 w-12 h-12 rounded-full border-2 border-green-900 text-3xl flex items-center justify-center opacity-90 hover:opacity-100"
+            className="bg-green-700 w-12 h-12 mx-2 rounded-full border-2 border-green-900 text-3xl flex items-center justify-center opacity-90 hover:opacity-100"
             onClick={handleNewTaskModal}
           >
             +
@@ -62,12 +65,13 @@ export default function Home() {
             }}
           />
           <button
-            className="rounded-full px-2 py-1 border-2 mr-2 w-14 bg-[#e7d7c1] border-[#e7d7c1]"
+            className="rounded-full px-2 py-1 border-2 w-14 mx-2 bg-[#e7d7c1] border-[#e7d7c1]"
             onClick={handleSearch}
           >
             Search
           </button>
         </div>
+        <div></div>
       </div>
 
       {showModal && (
